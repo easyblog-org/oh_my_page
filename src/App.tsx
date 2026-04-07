@@ -2,22 +2,16 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import IntersectObserver from '@/components/common/IntersectObserver';
 import { Toaster } from '@/components/ui/sonner';
+import { MainLayout } from './components/layouts/MainLayout';
 
 import routes from './routes';
-
-// import { AuthProvider } from '@/contexts/AuthContext';
-// import { RouteGuard } from '@/components/common/RouteGuard';
 
 const App: React.FC = () => {
   return (
     <Router>
-      {/*<AuthProvider>*/}
-      {/*<RouteGuard>*/}
       <IntersectObserver />
-      <div className="flex flex-col min-h-screen">
-        {/*<Header />*/}
-        <main className="flex-grow">
-          <Routes>
+      <Routes>
+        <Route element={<MainLayout />}>
           {routes.map((route, index) => (
             <Route
               key={index}
@@ -26,12 +20,9 @@ const App: React.FC = () => {
             />
           ))}
           <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-      </div>
-      <Toaster />
-      {/*</RouteGuard>*/}
-      {/*</AuthProvider>*/}
+        </Route>
+      </Routes>
+      <Toaster position="top-center" />
     </Router>
   );
 };
