@@ -6,7 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { creatorInfo } from "../data/mockData";
+import { creatorInfo } from "../data/my_info";
 import { Mail, MapPin, Send, MessageSquare } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -46,7 +46,7 @@ export default function ContactPage() {
         <div className="md:col-span-4 flex flex-col gap-10 md:gap-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <div className="flex flex-col gap-8">
             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">联系方式 / CONTACT</h2>
-            
+
             <div className="flex items-start gap-4">
               <div className="mt-1 p-2 bg-primary/10 rounded-full">
                 <Mail className="h-4 w-4 md:h-5 md:w-5 text-primary" />
@@ -73,20 +73,20 @@ export default function ContactPage() {
           <Separator />
 
           <div className="flex flex-col gap-8">
-             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">社交媒体 / SOCIAL</h2>
-             <div className="flex flex-wrap gap-4">
-                {creatorInfo.contact.socialLinks.map((link) => (
-                  <a
-                    key={link.platform}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 md:px-6 py-2 md:py-3 border border-border text-[10px] md:text-sm font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-300"
-                  >
-                    {link.platform}
-                  </a>
-                ))}
-             </div>
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">社交媒体 / SOCIAL</h2>
+            <div className="flex flex-wrap gap-4">
+              {creatorInfo.contact.socialLinks.map((link) => (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 md:px-6 py-2 md:py-3 border border-border text-[10px] md:text-sm font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-300"
+                >
+                  {link.platform}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -134,10 +134,10 @@ export default function ContactPage() {
                   <FormItem>
                     <FormLabel className="text-[10px] font-bold uppercase tracking-widest">留言内容</FormLabel>
                     <FormControl>
-                      <Textarea 
-                        placeholder="您想对我说什么..." 
-                        className="min-h-[120px] md:min-h-[150px] border-0 border-b border-border rounded-none px-0 py-2 md:py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-base md:text-lg resize-none" 
-                        {...field} 
+                      <Textarea
+                        placeholder="您想对我说什么..."
+                        className="min-h-[120px] md:min-h-[150px] border-0 border-b border-border rounded-none px-0 py-2 md:py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-base md:text-lg resize-none"
+                        {...field}
                       />
                     </FormControl>
                     <FormMessage />

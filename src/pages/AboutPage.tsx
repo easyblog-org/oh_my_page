@@ -1,4 +1,4 @@
-import { creatorInfo } from "../data/mockData";
+import { creatorInfo } from "../data/my_info";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -16,7 +16,7 @@ export default function AboutPage() {
               className="w-full h-full object-cover"
             />
           </div>
-          
+
           <div className="flex flex-col gap-4">
             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground">联系方式 / CONTACT</h2>
             <div className="flex flex-col gap-3">

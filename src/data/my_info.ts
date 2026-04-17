@@ -2,9 +2,9 @@ import { Project, CreatorInfo } from "../types/types";
 
 export const creatorInfo: CreatorInfo = {
   name: "黄鑫",
-  nickname: "HX",
-  avatar: "https://miaoda-site-img.cdn.bcebos.com/images/baidu_image_search_34894f0a-b7bc-4115-86b8-09c18981b600.jpg",
-  bio: "5年经验Java资深开发工程师，热衷于构建高性能后端系统。",
+  nickname: "Frank",
+  avatar: "https://avatars.githubusercontent.com/u/52988156?v=4",
+  bio: "爱琢磨也爱生活。相信好的代码和好的红烧肉一样，火候到了自然香。",
   detailedBio: "拥有5年深厚的Java开发背景，精通Spring Cloud微服务架构、并发编程及数据库优化。在繁忙的代码世界之外，我热衷于探索美食的极致味蕾体验，并享受亲手DIY木工与电子产品的创作过程。我追求代码的整洁与生活的质感，相信平衡的艺术能激发无限的创造力。",
   skills: ["Java & JVM 调优", "Spring Cloud 微服务", "Redis & 分布式缓存", "MySQL & 性能优化", "Kubernetes & Docker", "Kafka 消息中间件"],
   hobbies: [
@@ -20,11 +20,11 @@ export const creatorInfo: CreatorInfo = {
     }
   ],
   contact: {
-    email: "huangxin.dev@example.com",
+    email: "huangxin981230@163.com",
     socialLinks: [
-      { platform: "GitHub", url: "https://github.com", label: "代码仓库" },
-      { platform: "LinkedIn", url: "https://linkedin.com", label: "职业档案" },
-      { platform: "Blog", url: "https://blog.huangxin.me", label: "技术博客" }
+      { platform: "GitHub", url: "https://github.com/LoverITer", label: "访问我的GitHub仓库" },
+      { platform: "头条", url: "https://toutiao.com", label: "访问我的今日头条" },
+      { platform: "公众号", url: "https://weixin.qq.com", label: "访问我的微信公众号" }
     ]
   }
 };

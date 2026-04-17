@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { projects } from "../data/mockData";
+import { projects } from "../data/my_info";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,7 @@ export default function ProjectsPage() {
     <div className="container mx-auto px-6 md:px-12 py-12 md:py-24">
       <header className="mb-12 md:mb-24">
         <h1 className="text-3xl md:text-6xl font-bold tracking-tighter mb-8 text-center md:text-left">所有作品</h1>
-        
+
         {/* Filter */}
         <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-4 border-b border-border pb-6">
           {categories.map((category) => (
@@ -28,8 +28,8 @@ export default function ProjectsPage() {
               onClick={() => setActiveCategory(category)}
               className={cn(
                 "text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 relative pb-2",
-                activeCategory === category 
-                  ? "text-primary after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-[2px] after:bg-primary" 
+                activeCategory === category
+                  ? "text-primary after:absolute after:bottom-[-1px] after:left-0 after:right-0 after:h-[2px] after:bg-primary"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >

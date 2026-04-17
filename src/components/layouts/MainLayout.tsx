@@ -2,7 +2,7 @@ import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { creatorInfo } from "@/data/mockData";
+import { creatorInfo } from "@/data/my_info";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 
@@ -71,7 +71,7 @@ export function MainLayout() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[85%] max-w-[400px]">
                 <SheetHeader>
-                   <SheetTitle className="text-left font-bold tracking-tighter">HUANG XIN.</SheetTitle>
+                  <SheetTitle className="text-left font-bold tracking-tighter">HUANG XIN.</SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col space-y-8 mt-16">
                   {navItems.map((item) => (
@@ -102,15 +102,15 @@ export function MainLayout() {
       <footer className="py-12 border-t border-border mt-24">
         <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-sm text-muted-foreground">
-            © 2026 {creatorInfo.name} 的个人作品集 - {creatorInfo.nickname}.
+            © 2026 ARC.STUDIO. All rights reserved.
           </p>
           <div className="flex space-x-6">
             {creatorInfo.contact.socialLinks.map((link) => (
-              <a 
-                key={link.platform} 
-                href={link.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                key={link.platform}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.platform}
