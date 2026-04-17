@@ -11,14 +11,14 @@ export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="container mx-auto px-6 md:px-12 py-20 md:py-40 flex flex-col items-start">
-        <h2 className="text-lg md:text-xl font-medium tracking-widest uppercase text-primary mb-6 animate-fade-in">
+      <section className="container mx-auto px-6 md:px-12 py-16 md:py-40 flex flex-col items-start">
+        <h2 className="text-sm md:text-xl font-medium tracking-widest uppercase text-primary mb-6 animate-fade-in">
           {creatorInfo.nickname}
         </h2>
-        <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight max-w-4xl mb-12 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+        <h1 className="text-4xl md:text-8xl font-bold tracking-tighter leading-[1.1] max-w-4xl mb-12 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           {creatorInfo.bio}
         </h1>
-        <Button asChild size="lg" className="px-10 py-8 text-lg font-bold group animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <Button asChild size="lg" className="w-full md:w-auto px-10 py-8 text-lg font-bold group animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <Link to="/projects">
             查看作品
             <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -27,9 +27,9 @@ export default function HomePage() {
       </section>
 
       {/* Featured Projects */}
-      <section className="bg-muted/30 py-24 md:py-32">
+      <section className="bg-muted/30 py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="flex justify-between items-end mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>
               <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">精选作品 / FEATURED</h2>
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight">近期创作精选</h3>
@@ -40,7 +40,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {featuredProjects.map((project, index) => (
               <Link key={project.id} to={`/projects/${project.id}`} className="group">
                 <Card className="gallery-card overflow-hidden bg-transparent">
@@ -79,14 +79,14 @@ export default function HomePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="container mx-auto px-6 md:px-12 py-24 md:py-40 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+      <section className="container mx-auto px-6 md:px-12 py-20 md:py-40 text-center">
+        <h2 className="text-2xl md:text-5xl font-bold tracking-tight mb-8">
           对合作感兴趣？
         </h2>
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
+        <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
           我始终对具有挑战性的项目与有趣的创意充满期待。如果您有任何想法或合作意向，欢迎随时联系我。
         </p>
-        <Button asChild size="lg" variant="secondary" className="px-10 py-8 text-lg font-bold">
+        <Button asChild size="lg" variant="secondary" className="w-full md:w-auto px-10 py-8 text-lg font-bold">
           <Link to="/contact">开启对话</Link>
         </Button>
       </section>

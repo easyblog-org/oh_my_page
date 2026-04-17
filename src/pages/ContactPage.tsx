@@ -34,26 +34,26 @@ export default function ContactPage() {
 
   return (
     <div className="container mx-auto px-6 md:px-12 py-12 md:py-24 max-w-6xl">
-      <div className="mb-24 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 animate-fade-in">联系我</h1>
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
+      <div className="mb-16 md:mb-24 text-center">
+        <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-8 animate-fade-in">联系我</h1>
+        <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.1s' }}>
           无论是合作、咨询还是仅仅打个招呼，我随时欢迎。
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
         {/* Left Column - Contact Info */}
-        <div className="lg:col-span-4 flex flex-col gap-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div className="md:col-span-4 flex flex-col gap-10 md:gap-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <div className="flex flex-col gap-8">
-            <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">联系方式 / CONTACT</h2>
+            <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">联系方式 / CONTACT</h2>
             
             <div className="flex items-start gap-4">
               <div className="mt-1 p-2 bg-primary/10 rounded-full">
-                <Mail className="h-5 w-5 text-primary" />
+                <Mail className="h-4 w-4 md:h-5 md:w-5 text-primary" />
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">邮箱</span>
-                <a href={`mailto:${creatorInfo.contact.email}`} className="text-lg font-medium hover:text-primary transition-colors">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">邮箱</span>
+                <a href={`mailto:${creatorInfo.contact.email}`} className="text-base md:text-lg font-medium hover:text-primary transition-colors break-all">
                   {creatorInfo.contact.email}
                 </a>
               </div>
@@ -61,11 +61,11 @@ export default function ContactPage() {
 
             <div className="flex items-start gap-4">
               <div className="mt-1 p-2 bg-primary/10 rounded-full">
-                <MapPin className="h-5 w-5 text-primary" />
+                <MapPin className="h-4 w-4 md:h-5 md:w-5 text-primary" />
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground">所在地</span>
-                <span className="text-lg font-medium">中国 · 上海</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">所在地</span>
+                <span className="text-base md:text-lg font-medium">中国 · 上海</span>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
           <Separator />
 
           <div className="flex flex-col gap-8">
-             <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">社交媒体 / SOCIAL</h2>
+             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4">社交媒体 / SOCIAL</h2>
              <div className="flex flex-wrap gap-4">
                 {creatorInfo.contact.socialLinks.map((link) => (
                   <a
@@ -81,7 +81,7 @@ export default function ContactPage() {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 border border-border text-sm font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-300"
+                    className="px-4 md:px-6 py-2 md:py-3 border border-border text-[10px] md:text-sm font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-300"
                   >
                     {link.platform}
                   </a>
@@ -91,23 +91,23 @@ export default function ContactPage() {
         </div>
 
         {/* Right Column - Contact Form */}
-        <div className="lg:col-span-8 bg-card border border-border p-8 md:p-16 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-          <div className="flex items-center gap-3 mb-10">
-            <MessageSquare className="h-6 w-6 text-primary" />
-            <h2 className="text-3xl font-bold tracking-tight">在线留言</h2>
+        <div className="md:col-span-8 bg-card border border-border p-6 md:p-16 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="flex items-center gap-3 mb-8 md:mb-10">
+            <MessageSquare className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">在线留言</h2>
           </div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 md:space-y-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-xs font-bold uppercase tracking-widest">姓名</FormLabel>
+                      <FormLabel className="text-[10px] font-bold uppercase tracking-widest">姓名</FormLabel>
                       <FormControl>
-                        <Input placeholder="您的姓名" className="border-0 border-b border-border rounded-none px-0 py-6 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-lg" {...field} />
+                        <Input placeholder="您的姓名" className="border-0 border-b border-border rounded-none px-0 py-4 md:py-6 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-base md:text-lg" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -118,9 +118,9 @@ export default function ContactPage() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-xs font-bold uppercase tracking-widest">邮箱</FormLabel>
+                      <FormLabel className="text-[10px] font-bold uppercase tracking-widest">邮箱</FormLabel>
                       <FormControl>
-                        <Input placeholder="您的邮箱地址" className="border-0 border-b border-border rounded-none px-0 py-6 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-lg" {...field} />
+                        <Input placeholder="您的邮箱地址" className="border-0 border-b border-border rounded-none px-0 py-4 md:py-6 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-base md:text-lg" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -132,11 +132,11 @@ export default function ContactPage() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-xs font-bold uppercase tracking-widest">留言内容</FormLabel>
+                    <FormLabel className="text-[10px] font-bold uppercase tracking-widest">留言内容</FormLabel>
                     <FormControl>
                       <Textarea 
                         placeholder="您想对我说什么..." 
-                        className="min-h-[150px] border-0 border-b border-border rounded-none px-0 py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-lg resize-none" 
+                        className="min-h-[120px] md:min-h-[150px] border-0 border-b border-border rounded-none px-0 py-2 md:py-4 bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-all text-base md:text-lg resize-none" 
                         {...field} 
                       />
                     </FormControl>
@@ -144,9 +144,9 @@ export default function ContactPage() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full md:w-auto px-12 py-8 text-lg font-bold tracking-widest uppercase group transition-all">
+              <Button type="submit" className="w-full md:w-auto px-10 md:px-12 py-6 md:py-8 text-base md:text-lg font-bold tracking-widest uppercase group transition-all">
                 发送留言
-                <Send className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <Send className="ml-3 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Button>
             </form>
           </Form>

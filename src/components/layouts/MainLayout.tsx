@@ -69,7 +69,7 @@ export function MainLayout() {
                   <Menu className="h-6 w-6" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetContent side="right" className="w-[85%] max-w-[400px]">
                 <SheetHeader>
                    <SheetTitle className="text-left font-bold tracking-tighter">HUANG XIN.</SheetTitle>
                 </SheetHeader>
