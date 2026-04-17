@@ -1,33 +1,191 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { creatorInfo, projects } from "../data/my_info";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useState, useEffect, useRef } from "react";
 
 export default function HomePage() {
   const featuredProjects = projects.slice(0, 6);
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [showIntro, setShowIntro] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const texts = [
+    `你好，我是${creatorInfo.name}`,
+    '一名经验丰富的独立开发者'
+  ];
+
+  useEffect(() => {
+    const typeText = () => {
+      const currentText = texts[currentTextIndex];
+
+      if (currentCharIndex <= currentText.length) {
+        setDisplayedText(currentText.slice(0, currentCharIndex));
+        setCurrentCharIndex(prev => prev + 1);
+        const randomSpeed = Math.random() * 30 + 10;
+        timeoutRef.current = setTimeout(typeText, randomSpeed);
+      } else {
+        timeoutRef.current = setTimeout(() => {
+          setCurrentTextIndex(prev => (prev + 1) % texts.length);
+          setCurrentCharIndex(0);
+        }, 1000);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      typeText();
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [currentTextIndex, currentCharIndex]);
+
+  useEffect(() => {
+    setShowIntro(true);
+    setShowButtons(true);
+  }, []);
+
+  const renderTypedText = () => {
+    const currentText = texts[currentTextIndex];
+    const prefix = '你好，我是';
+    const name = creatorInfo.name;
+
+    if (currentTextIndex === 0) {
+      if (currentCharIndex <= prefix.length) {
+        return <span className="text-black">{prefix.slice(0, currentCharIndex)}</span>;
+      } else {
+        const nameCharsTyped = currentCharIndex - prefix.length;
+        const typedName = name.slice(0, Math.max(0, nameCharsTyped));
+        return (
+          <>
+            <span className="text-black">{prefix}</span>
+            <span className="text-primary">{typedName}</span>
+          </>
+        );
+      }
+    } else {
+      return <span className="text-black">{displayedText}</span>;
+    }
+  };
 
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section className="container mx-auto px-6 md:px-12 py-16 md:py-40 flex flex-col items-start">
-        <h2 className="text-sm md:text-xl font-medium tracking-widest uppercase text-primary mb-6 animate-fade-in">
-          {creatorInfo.nickname}
-        </h2>
-        <h1 className="text-4xl md:text-8xl font-bold tracking-tighter leading-[1.1] max-w-4xl mb-12 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-          {creatorInfo.bio}
-        </h1>
-        <Button asChild size="lg" className="w-full md:w-auto px-10 py-8 text-lg font-bold group animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          <Link to="/projects">
-            查看作品
-            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </Button>
+      <section className="container mx-auto px-6 md:px-12 py-4 md:py-4 flex flex-col items-center text-center relative">
+        {/* 代码装饰背景 */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.15]">
+          <pre className="text-[100px] md:text-[160px] font-mono leading-none absolute left-0 top-0 select-none text-violet-500">
+            {'{ }'}
+          </pre>
+          <code className="text-[30px] md:text-[50px] font-mono absolute left-[20%] top-[10%] select-none text-indigo-400">
+            class
+          </code>
+          <code className="text-[25px] md:text-[40px] font-mono absolute left-[8%] top-[35%] select-none text-purple-400">
+            interface
+          </code>
+          <code className="text-[40px] md:text-[70px] font-mono absolute right-[5%] top-[5%] select-none text-emerald-400">
+            @Autowired
+          </code>
+          <code className="text-[20px] md:text-[35px] font-mono absolute right-[15%] top-[25%] select-none text-green-400">
+            import
+          </code>
+          <code className="text-[22px] md:text-[38px] font-mono absolute right-[8%] top-[40%] select-none text-teal-400">
+            return
+          </code>
+          <code className="text-[35px] md:text-[55px] font-mono absolute left-[5%] bottom-[30%] select-none text-orange-400">
+            void main()
+          </code>
+          <code className="text-[18px] md:text-[32px] font-mono absolute left-[15%] bottom-[15%] select-none text-amber-500">
+            throws
+          </code>
+          <pre className="text-[80px] md:text-[130px] font-mono leading-none absolute right-0 bottom-[10%] select-none text-cyan-400">
+            {'</>'}
+          </pre>
+          <code className="text-[45px] md:text-[75px] font-mono absolute right-[20%] bottom-[25%] select-none text-sky-400">
+            =&gt;
+          </code>
+          <code className="text-[28px] md:text-[48px] font-mono absolute right-[5%] bottom-[40%] select-none text-cyan-500">
+            extends
+          </code>
+          <code className="text-[50px] md:text-[85px] font-mono absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none text-yellow-400">
+            []
+          </code>
+          <code className="text-[16px] md:text-[28px] font-mono absolute left-[45%] top-[70%] select-none text-orange-300">
+            package
+          </code>
+          <code className="text-[24px] md:text-[42px] font-mono absolute left-[55%] bottom-[45%] select-none text-yellow-300">
+            public
+          </code>
+          <code className="text-[20px] md:text-[35px] font-mono absolute left-[70%] bottom-[20%] select-none text-amber-400">
+            private
+          </code>
+          <code className="text-[22px] md:text-[38px] font-mono absolute left-[35%] top-[20%] select-none text-lime-400">
+            final
+          </code>
+          <code className="text-[18px] md:text-[32px] font-mono absolute left-[75%] top-[60%] select-none text-green-300">
+            static
+          </code>
+        </div>
+
+        {/* 头像 - 从上方划入 */}
+        <div className="w-32 md:w-48 mb-8 relative z-10 animate-slide-down">
+          <div className="relative">
+            <div className="absolute -inset-4 bg-primary/10 rounded-full blur-xl" />
+            <img
+              src={creatorInfo.avatar}
+              alt={creatorInfo.name}
+              className="relative z-10 w-full h-auto rounded-full border-4 border-white shadow-lg"
+            />
+          </div>
+        </div>
+
+        {/* 自我介绍信息 */}
+        <div className="max-w-2xl relative z-10 mb-10">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-[1.2] mb-6 whitespace-nowrap w-[320px] md:w-[560px] text-center font-mono h-14 md:h-20 flex items-center justify-center">
+            {renderTypedText()}
+          </h1>
+
+          {/* 个人介绍 - 从下方划入 */}
+          <h2 className={`text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-loose mb-20 transition-all duration-500 ease-out ${showIntro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            深耕后端架构与系统设计 5 年，同时热衷探索 AI 提效与变现。相信好的代码和好的生成结果一样，细节决定质感。追求逻辑的严谨与技术的温度，平衡代码的严谨与 AI 的创造力，在技术浪潮里走自己的路。
+          </h2>
+
+          {/* 按钮组 - 从下方划入 */}
+          <div className={`flex flex-col sm:flex-row gap-5 justify-center w-full transition-all duration-500 ease-out ${showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto px-10 py-6 text-lg font-medium group">
+              <Link to="/contact">
+                联系我
+              </Link>
+            </Button>
+            <Button size="lg" className="w-full sm:w-auto px-10 py-6 text-lg font-medium group" onClick={() => {
+              document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}>
+              查看作品
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
+        </div>
       </section>
 
+      {/* 滚动提示 - 底部半隐藏式 */}
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 translate-y-[-50%] flex flex-col items-center pointer-events-none">
+        <p className="text-xs text-muted-foreground mb-1">Scroll</p>
+        <div className="animate-bounce">
+          <ArrowDown className="w-5 h-5 text-muted-foreground" />
+        </div>
+      </div>
+
       {/* Featured Projects */}
-      <section className="bg-muted/30 py-20 md:py-32">
+      <section id="projects" className="bg-muted/30 py-20 md:py-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div>

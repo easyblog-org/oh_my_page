@@ -40,7 +40,9 @@ export function MainLayout() {
       >
         <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
           <NavLink to="/" className="text-xl font-bold tracking-tighter hover:text-primary transition-colors">
-            HUANG XIN.
+           <span className="text-[#0030a9]">&lt;</span>
+           <span className="text-[#0030a9]">&nbsp;DEV&nbsp;</span>
+           <span className="text-[#0030a9]">/&gt;</span>
           </NavLink>
 
           {/* Desktop Nav */}
@@ -71,7 +73,7 @@ export function MainLayout() {
               </SheetTrigger>
               <SheetContent side="right" className="w-[85%] max-w-[400px]">
                 <SheetHeader>
-                  <SheetTitle className="text-left font-bold tracking-tighter">HUANG XIN.</SheetTitle>
+                  <SheetTitle className="text-left font-bold tracking-tighter">黄鑫</SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col space-y-8 mt-16">
                   {navItems.map((item) => (
