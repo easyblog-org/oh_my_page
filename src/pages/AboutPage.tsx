@@ -78,10 +78,29 @@ export default function AboutPage() {
 
           <Separator />
 
+          <div>
+            <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-muted-foreground mb-8">兴趣爱好 / HOBBIES</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {creatorInfo.hobbies?.map((hobby, index) => (
+                <div key={index} className="flex flex-col gap-4">
+                  <div className="aspect-video overflow-hidden border border-border">
+                    <img src={hobby.image} alt={hobby.title} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold mb-2">{hobby.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{hobby.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <Separator />
+
           <div className="bg-muted/30 p-8 md:p-12 border border-border">
-            <h3 className="text-2xl font-bold mb-4">合作理念</h3>
+            <h3 className="text-2xl font-bold mb-4">技术哲学</h3>
             <p className="text-muted-foreground leading-relaxed">
-              我相信优秀的作品源于深度的沟通与信任。在每一次合作中，我都会全身心投入，从理解需求到最终交付，确保每一个细节都符合预期。如果您正在寻找一位能够将想法转化为现实的创作者，我期待与您携手共创。
+              我始终认为，代码不仅是逻辑的堆砌，更是解决现实问题的艺术。在 Java 开发的五年里，我坚持编写“会说话的代码”，追求极致的性能与系统的健壮性。同时，生活中的美食探索与 DIY 创作，让我学会在严谨与感性之间寻找平衡，这种平衡也反哺了我的技术直觉。
             </p>
           </div>
         </div>

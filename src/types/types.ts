@@ -13,6 +13,12 @@ export interface Skill {
   level: number; // 0-100
 }
 
+export interface Hobby {
+  title: string;
+  description: string;
+  image: string;
+}
+
 export interface CreatorInfo {
   name: string;
   nickname: string;
@@ -20,6 +26,7 @@ export interface CreatorInfo {
   bio: string;
   detailedBio: string;
   skills: string[];
+  hobbies?: Hobby[];
   contact: {
     email: string;
     socialLinks: {
