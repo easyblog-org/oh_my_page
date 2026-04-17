@@ -132,7 +132,7 @@
             scriptSrc: 'https://resource-static.cdn.bcebos.com/sentry/browser.sentry.min.js',
             sentryDsn: 'https://e3c07b90fcb5207f333d50ac24a99d3e@sentry.miaoda.cn/233',
             environment: 'undefined',
-            appId: 'app-asihabp1143l'
+            appId: 'app-b0vw3z04jdoh'
           }
         )
       ]
