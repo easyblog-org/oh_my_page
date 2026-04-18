@@ -29,6 +29,8 @@ export interface CreatorInfo {
   hobbies?: Hobby[];
   contact: {
     email: string;
+    phone: string;
+    wechat: string;
     socialLinks: {
       platform: string;
       url: string;

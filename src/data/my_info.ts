@@ -21,6 +21,8 @@ export const creatorInfo: CreatorInfo = {
   ],
   contact: {
     email: "huangxin981230@163.com",
+    phone: "+86 18805691256",
+    wechat: "hx95152437",
     socialLinks: [
       { platform: "GitHub", url: "https://github.com/LoverITer", label: "访问我的GitHub仓库" },
       { platform: "头条", url: "https://toutiao.com", label: "访问我的今日头条" },
