@@ -1,14 +1,48 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { projects } from "../data/my_info";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-
 const categories = ["全部", ...Array.from(new Set(projects.map((p) => p.category)))];
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("全部");
+  const [showProjects, setShowProjects] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setShowProjects(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (projectsRef.current) {
+      observer.observe(projectsRef.current);
+    }
+
+    return () => {
+      if (projectsRef.current) {
+        observer.unobserve(projectsRef.current);
+      }
+    };
+  }, []);
+
+  const handleCategoryChange = (category: string) => {
+    if (activeCategory !== category) {
+      setShowProjects(false);
+      setAnimationKey(prev => prev + 1);
+      setActiveCategory(category);
+      setTimeout(() => {
+        setShowProjects(true);
+      }, 50);
+    }
+  };
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "全部") return projects;
@@ -16,16 +50,16 @@ export default function ProjectsPage() {
   }, [activeCategory]);
 
   return (
-    <div className="container mx-auto px-6 md:px-12 py-12 md:py-24">
-      <header className="mb-12 md:mb-24">
-        <h1 className="text-3xl md:text-6xl font-bold tracking-tighter mb-8 text-center md:text-left">所有作品</h1>
+    <div className="container mx-auto px-6 md:px-12 pt-0 pb-20 md:pt-0 md:pb-20">
+      <header className="mb-6 md:mb-10">
+        {/* <h1 className="text-3xl md:text-6xl font-bold tracking-tighter mb-8 text-center md:text-left">所有作品</h1> */}
 
         {/* Filter */}
-        <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-4 border-b border-border pb-6">
+        <div className={`flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-4 border-b border-border pb-6 transition-all duration-700 ease-out ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => handleCategoryChange(category)}
               className={cn(
                 "text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 relative pb-2",
                 activeCategory === category
@@ -40,9 +74,9 @@ export default function ProjectsPage() {
       </header>
 
       {filteredProjects.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
-          {filteredProjects.map((project) => (
-            <Link key={project.id} to={`/projects/${project.id}`} className="group">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16" ref={projectsRef} key={animationKey}>
+          {filteredProjects.map((project, index) => (
+            <Link key={`${project.id}-${animationKey}`} to={`/projects/${project.id}`} className={`group transition-all duration-700 ease-out ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: `${index * 0.1}s` }}>
               <Card className="gallery-card overflow-hidden bg-transparent border-0 shadow-none">
                 <div className="aspect-[3/4] overflow-hidden relative">
                   <img

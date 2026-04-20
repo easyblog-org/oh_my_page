@@ -4,8 +4,11 @@ export interface Project {
   description: string;
   longDescription: string;
   coverImage: string;
+  coverImages?: string[];
   category: string;
   createdAt: string;
+  labels?: string[];
+  url?: string;
 }
 
 export interface Skill {
