@@ -170,13 +170,13 @@ export function MainLayout() {
 
       
         {/* 页脚 */}
-      <footer className="hidden md:block py-6 sm:py-8 border-t border-gray-200 mt-12 sm:mt-18">
+      <footer className="hidden md:block py-6 sm:py-8 border-t border-[#e0e0e0] mt-12 sm:mt-18 bg-[#f8f8f8] text-[#333333]">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* 左侧：平台信息 */}
             <div className="text-center md:text-left">
-              <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">DEV.STUDIO</h3>
-              <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
+              <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4">XINXINNOTE.TECH</h3>
+              <p className="text-[#7f8c8d] text-xs sm:text-sm mb-3 sm:mb-4">
                 拥抱AI，写好代码。保持好奇，耐心打磨。
               </p>
             </div>
@@ -189,7 +189,7 @@ export function MainLayout() {
                   <li key={item.path}>
                     <NavLink
                       to={item.path}
-                      className="text-gray-600 hover:text-primary transition-colors"
+                      className="text-[#333333] hover:text-primary hover:underline transition-colors"
                     >
                       {item.name}
                     </NavLink>
@@ -256,7 +256,7 @@ export function MainLayout() {
                 <div className="bg-gray-800 p-2 sm:p-3 inline-block rounded-md">
                   <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded flex items-center justify-center">
                     <div className="text-xs text-gray-600 text-center">
-                      <img src="/images/wx_qr.jpg" alt="微信二维码" className="w-32 h-32" />
+                      <img src="/images/wx_qr.jpg" alt="微信二维码" className="w-32 h-32"  width="128" height="128" />
                     </div>
                   </div>
                 </div>
@@ -265,7 +265,7 @@ export function MainLayout() {
           </div>
 
           {/* 版权信息 */}
-          <p className="text-gray-600 text-center text-[10px] sm:text-sm mt-6 sm:mt-16">
+          <p className="text-[#666666] text-center text-[10px] sm:text-sm mt-6 sm:mt-16">
             © 2026 {creatorInfo.name} ({creatorInfo.nickname}). Built with React + TypeScript + Vite
           </p>
 

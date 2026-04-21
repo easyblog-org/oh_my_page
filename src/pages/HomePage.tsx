@@ -210,6 +210,10 @@ export default function HomePage() {
               src={creatorInfo.avatar}
               alt={creatorInfo.name}
               className="relative z-10 w-full h-auto rounded-full border-4 border-white shadow-lg"
+              loading="lazy"
+              decoding="async"
+              width="128"
+              height="128"
             />
           </div>
         </div>
