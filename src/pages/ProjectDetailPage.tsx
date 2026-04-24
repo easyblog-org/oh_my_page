@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { projects } from "../data/my_info";
+import { projects } from "../data/projects";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Tag, ChevronRight, Share2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";

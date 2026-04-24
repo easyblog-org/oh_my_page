@@ -7,7 +7,8 @@ export interface Project {
   coverImages?: string[];
   category: string;
   createdAt: string;
-  labels?: string[];
+  tags?: string[];
+  tech?: string;
   url?: string;
 }
 
@@ -20,6 +21,11 @@ export interface Hobby {
   title: string;
   description: string;
   image: string;
+}
+
+export interface NavItem {
+  name: string;
+  anchor: string;
 }
 
 export interface CreatorInfo {
