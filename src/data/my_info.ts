@@ -4,7 +4,7 @@ export const creatorInfo: CreatorInfo = {
   name: "黄鑫",
   nickname: "Frank",
   avatar: "/images/my.webp",
-  bio: "爱琢磨也爱生活。相信好的代码和好的红烧肉一样，火候到了自然香。",
+  bio: "写代码是逻辑的艺术，做产品是平衡的哲学。不追逐潮流，只相信能落地的技术才有价值",
   detailedBio: "拥有5年深厚的Java开发背景，精通Spring Cloud微服务架构、并发编程及数据库优化。在繁忙的代码世界之外，我热衷于探索AIGC的无限可能，享受技术带来的创造力。我追求代码的整洁与生活的质感，相信平衡的艺术能激发无限的想象力。",
   skills: [
     "Java & JVM 调优", "Spring 全家桶", "MySQL & 性能优化", "Redis & 缓存",

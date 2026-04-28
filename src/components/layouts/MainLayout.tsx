@@ -119,6 +119,10 @@ export function MainLayout() {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
     if (isHomePage && location.hash) {
       const anchor = location.hash.replace("#", "");
       setTimeout(() => {

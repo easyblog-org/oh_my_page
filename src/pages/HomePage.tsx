@@ -277,16 +277,46 @@ export default function HomePage() {
           </div>
 
           <div
-            className={`max-w-[800px] mx-auto transition-all duration-600 ease-out ${aboutVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 transition-all duration-600 ease-out ${aboutVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionDelay: "0.1s" }}
           >
-            <div className="bg-[rgba(15,23,42,0.6)] backdrop-blur-[4px] border border-[rgba(59,130,246,0.2)] rounded-2xl p-8 md:p-10">
-              <p className="text-base md:text-lg text-[#cbd5e1] leading-[1.8] mb-6">
-                {creatorInfo.detailedBio}
-              </p>
+            {/* Left: Profile Card */}
+            <div className="md:col-span-2 bg-[rgba(15,23,42,0.6)] backdrop-blur-[4px] border border-[rgba(59,130,246,0.2)] rounded-2xl p-8 flex flex-col items-center text-center">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-[#3b82f6]/30 mb-5">
+                <img
+                  src={creatorInfo.avatar}
+                  alt={creatorInfo.nickname}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-1">{creatorInfo.nickname}</h3>
+              <p className="text-sm text-[#60a5fa] mb-5">全栈开发者 / AI 工程化探索者</p>
+              <div className="flex gap-4">
+                {creatorInfo.contact.socialLinks.slice(0, 3).map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-[#64748b] hover:text-[#3b82f6] transition-colors duration-200"
+                  >
+                    {link.platform}
+                  </a>
+                ))}
+              </div>
+            </div>
 
-              <div className="flex flex-wrap gap-3 mb-6">
-                {creatorInfo.skills.map((skill) => (
+            {/* Right: Content Card */}
+            <div className="md:col-span-3 bg-[rgba(15,23,42,0.6)] backdrop-blur-[4px] border border-[rgba(59,130,246,0.2)] rounded-2xl p-8 md:p-10 flex flex-col">
+              <div className="flex items-start gap-3 mb-5">
+                <span className="text-[#3b82f6] text-lg leading-none mt-1 select-none">&gt;</span>
+                <p className="text-base md:text-lg text-[#cbd5e1] leading-[1.8]">
+                  {creatorInfo.bio}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {creatorInfo.skills.slice(0, 8).map((skill) => (
                   <span
                     key={skill}
                     className="bg-[#1e293b] text-[#60a5fa] px-3 py-1.5 text-sm rounded-full"
@@ -294,11 +324,29 @@ export default function HomePage() {
                     {skill}
                   </span>
                 ))}
+                <span className="text-sm text-[#64748b] px-2 py-1.5">
+                  +{creatorInfo.skills.length - 8}
+                </span>
               </div>
 
-              <p className="text-sm text-[#94a3b8] italic">
-                热爱技术，也热爱生活。追求代码的整洁与生活的质感，相信平衡的艺术能激发无限的想象力。
-              </p>
+              <div className="mt-auto flex items-center justify-between">
+                <div className="flex gap-8">
+                  <div>
+                    <span className="text-xl font-bold text-white">5+</span>
+                    <p className="text-xs text-[#64748b] mt-0.5">年开发经验</p>
+                  </div>
+                  <div>
+                    <span className="text-xl font-bold text-white">10+</span>
+                    <p className="text-xs text-[#64748b] mt-0.5">项目交付</p>
+                  </div>
+                </div>
+                <Link
+                  to="/about"
+                  className="text-sm text-[#3b82f6] hover:underline whitespace-nowrap"
+                >
+                  完整介绍 →
+                </Link>
+              </div>
             </div>
           </div>
         </div>

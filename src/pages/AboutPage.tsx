@@ -41,7 +41,7 @@ export default function AboutPage() {
   const achievementsAnimation = useScrollAnimation(0.1);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 md:px-12 pt-0 pb-20  md:pt-0  md:pb-20 max-w-6xl">
+    <div className="container mx-auto px-4 sm:px-6 md:px-12 pt-[72px] pb-20 md:pb-20 max-w-6xl">
       {/* 页面标题 - 桌面端显示 */}
       <div
         ref={titleAnimation.ref}
@@ -49,7 +49,7 @@ export default function AboutPage() {
           }`}
       >
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tighter text-center">关于我</h1>
-        <Separator className="mt-4 md:mt-6" />
+        {/* <Separator className="mt-4 md:mt-6" /> */}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
@@ -201,10 +201,14 @@ export default function AboutPage() {
                 <div className="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">10+</div>
                 <div className="text-xs text-muted-foreground">项目交付</div>
               </div>
-              <div className="p-4 sm:p-6 text-center bg-muted/20 border border-border rounded-lg">
-                <div className="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">100K+</div>
-                <div className="text-xs text-muted-foreground">日均线索处理</div>
-              </div>
+              {/* <div className="p-4 sm:p-6 text-center bg-muted/20 border border-border rounded-lg">
+                <a  href="https://blog.xinxinnote.tech" 
+                    target="_blank"
+                    rel="noopener noreferrer">
+                  <div className="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">100+</div>
+                  <div className="text-xs text-muted-foreground">原创技术文章</div>
+                </a>
+              </div> */}
             </div>
           </div>
         </div>
