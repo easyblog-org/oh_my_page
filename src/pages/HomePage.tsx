@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { creatorInfo } from "@/data/my_info";
 import { heroTexts, codeKeywords, featuredProjects } from "@/data/home";
 import { HeroAnimationSlot, getHeroAnimation } from "@/components/hero-animation";
 import { TypingText } from "@/components/TypingText";
+import { ProjectCard } from "@/components/ProjectCard";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -239,42 +241,22 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProjects.map((project, index) => (
-              <div
-                key={project.title}
-                className={`bg-[rgba(15,23,42,0.6)] backdrop-blur-[4px] border border-[rgba(59,130,246,0.2)] rounded-2xl p-6 transition-all duration-500 ease-out hover:border-[#3b82f6] hover:shadow-[0_20px_25px_-12px_rgba(0,0,0,0.5)] ${projectsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-                style={{ transitionDelay: `${(index + 1) * 0.1}s` }}
-              >
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">{project.title}</h3>
-                  <span className="text-xs text-[#64748b] ml-2 shrink-0">{project.year}</span>
-                </div>
-
-                <p className="text-sm md:text-base text-[#94a3b8] leading-[1.5] mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-[#1e293b] text-[#60a5fa] px-3 py-1 text-xs rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-[#64748b]">{project.tech}</span>
-                  <button
-                    onClick={() => alert("演示模式")}
-                    className="text-sm text-[#3b82f6] hover:underline bg-transparent border-none cursor-pointer"
-                  >
-                    查看详情 →
-                  </button>
-                </div>
-              </div>
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                visible={projectsVisible}
+              />
             ))}
+          </div>
+
+          <div className="flex justify-end mt-8">
+            <Link
+              to="/projects"
+              className="text-sm text-[#3b82f6] hover:underline"
+            >
+              查看全部 →
+            </Link>
           </div>
         </div>
       </section>

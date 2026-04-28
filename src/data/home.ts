@@ -1,5 +1,5 @@
 import { projects } from "./projects";
-import {creatorInfo} from "./my_info";
+import { creatorInfo } from "./my_info";
 
 export const heroTexts = [
   `你好，我是 ${creatorInfo.nickname}`,
@@ -23,10 +23,4 @@ export const codeKeywords = [
   "Component",
 ];
 
-export const featuredProjects = projects.map((p) => ({
-  title: p.title,
-  description: p.description,
-  tags: p.tags ??  [],
-  year: p.createdAt.slice(0, 4),
-  tech: p.tech ?? "",
-}));
+export const featuredProjects = projects;

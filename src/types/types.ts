@@ -10,6 +10,8 @@ export interface Project {
   tags?: string[];
   tech?: string;
   url?: string;
+  githubUrl?: string;
+  demoUrl?: string;
 }
 
 export interface Skill {
