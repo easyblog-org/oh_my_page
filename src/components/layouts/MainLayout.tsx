@@ -3,6 +3,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { creatorInfo } from "@/data/my_info";
 import { navItems } from "@/data/navigation";
+import { Logo } from "@/components/Logo";
 
 function SocialIcons({ size = 20, className = "" }: { size?: number; className?: string }) {
   return (
@@ -146,12 +147,7 @@ export function MainLayout() {
         style={{ height: "72px" }}
       >
         <div className="max-w-[1200px] mx-auto h-full flex justify-between items-center px-5">
-          <button
-            onClick={() => handleNavClick("home")}
-            className="font-mono text-xl font-medium text-[#60a5fa] hover:text-[#3b82f6] transition-colors duration-200 no-underline"
-          >
-            &lt;DEV/&gt;
-          </button>
+          <Logo />
 
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
@@ -199,9 +195,7 @@ export function MainLayout() {
       >
         <div className="h-full bg-[rgba(10,15,28,0.95)] backdrop-blur-[16px] p-6 flex flex-col">
           <div className="flex justify-between items-center mb-8">
-            <span className="font-mono text-lg font-medium text-[#60a5fa]">
-              &lt;DEV/&gt;
-            </span>
+            <Logo />
             <button
               className="text-[#e2e8f0] text-2xl bg-transparent border-none cursor-pointer"
               onClick={() => setMobileMenuOpen(false)}

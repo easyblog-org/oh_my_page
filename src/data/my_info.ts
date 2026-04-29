@@ -1,14 +1,15 @@
 import { CreatorInfo } from "../types/types";
 
 export const creatorInfo: CreatorInfo = {
-  name: "黄鑫",
+  name: "黄三金",
   nickname: "Frank",
   avatar: "/images/my.webp",
   bio: "写代码是逻辑的艺术，做产品是平衡的哲学。不追逐潮流，只相信能落地的技术才有价值",
-  detailedBio: "拥有5年深厚的Java开发背景，精通Spring Cloud微服务架构、并发编程及数据库优化。在繁忙的代码世界之外，我热衷于探索AIGC的无限可能，享受技术带来的创造力。我追求代码的整洁与生活的质感，相信平衡的艺术能激发无限的想象力。",
+  heroBio: "深耕全栈架构与系统设计5年，同时热衷探索AI提效与变现。在确定性与可能性之间，我选择兼收并蓄。追求逻辑的严谨与技术的温度，平衡代码的确定性与AI的可能性，在技术浪潮里走自己的路。",
+  detailedBio: "Hi！我是Frank，一名专注于后端的Java工程师。五年来，我帮助多个项目构建过高并发、高可靠的系统，参与过数据分表、性能调优、架构演进等核心工作。我相信好的代码和好的红烧肉一样，火候到了自然香——持续打磨细节，才能让人放心。工作中，我追求架构的稳定与逻辑的严谨；生活里，我享受烹饪、手工和一切能让人慢下来的事物。一个配方可以反复试验数十次，一段关键代码也值得不断重构。保持好奇，耐心打磨，这就是我的方式。",
   skills: [
     "Java & JVM 调优", "Spring 全家桶", "MySQL & 性能优化", "Redis & 缓存",
-    "Kafka & 消息队列", "Elasticsearch", "Flink", "Docker & K8s",
+    "Kafka/消息队列", "Elasticsearch", "Flink", "Docker & K8s",
     "Spring AI", "Ollama", "Vue.js & React", "Python Web开发"
   ],
   hobbies: [

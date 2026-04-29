@@ -2,7 +2,6 @@ import HomePage from './pages/HomePage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
 import type { ReactNode } from 'react';
 
 export interface RouteConfig {
@@ -38,12 +37,6 @@ const routes: RouteConfig[] = [
     element: <AboutPage />,
     public: true,
   },
-  {
-    name: '联系',
-    path: '/contact',
-    element: <ContactPage />,
-    public: true,
-  }
 ];
 
 export default routes;

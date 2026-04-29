@@ -4,7 +4,8 @@ import { creatorInfo } from "./my_info";
 export const heroTexts = [
   `你好，我是 ${creatorInfo.nickname}`,
   "专业全栈开发者",
-  "能够帮您把有趣想法落地为可靠系统",
+  "能够把您有趣想法",
+  "落地为可靠系统",
   "欢迎沟通！",
 ];
 

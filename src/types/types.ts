@@ -35,6 +35,7 @@ export interface CreatorInfo {
   nickname: string;
   avatar: string;
   bio: string;
+  heroBio: string;
   detailedBio: string;
   skills: string[];
   hobbies?: Hobby[];
