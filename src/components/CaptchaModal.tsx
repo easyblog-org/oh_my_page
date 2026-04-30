@@ -9,11 +9,14 @@ interface CaptchaModalProps {
   verifying: boolean;
 }
 
+const CAPTCHA_BG_WIDTH = 320;
+
 export default function CaptchaModal({ visible, onClose, onVerified, verifying }: CaptchaModalProps) {
   const actionRef = useRef<ActionType | undefined>(undefined);
   const captchaIdRef = useRef<string>('');
   const captchaTokenRef = useRef<string>('');
   const abortControllerRef = useRef<AbortController | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleRequest = useCallback(async () => {
     const result = await fetchCaptchaImage();
@@ -37,8 +40,12 @@ export default function CaptchaModal({ visible, onClose, onVerified, verifying }
       abortControllerRef.current?.abort();
       abortControllerRef.current = new AbortController();
 
+      const panelEl = wrapperRef.current?.querySelector('.rc-slider-captcha-panel');
+      const renderedWidth = panelEl?.clientWidth || CAPTCHA_BG_WIDTH;
+      const scaledX = (data.x / renderedWidth) * CAPTCHA_BG_WIDTH;
+
       const result = await verifyCaptcha(captchaIdRef.current, {
-        x: data.x,
+        x: scaledX,
         y: data.y,
         duration: data.duration,
         trail: data.trail,
@@ -105,7 +112,7 @@ export default function CaptchaModal({ visible, onClose, onVerified, verifying }
           </button>
         </div>
 
-        <div className="captcha-wrapper">
+        <div className="captcha-wrapper" ref={wrapperRef}>
           <SliderCaptcha
             request={handleRequest}
             onVerify={handleVerify}

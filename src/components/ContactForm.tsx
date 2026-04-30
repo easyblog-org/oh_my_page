@@ -93,7 +93,7 @@ export default function ContactForm({ toEmail }: ContactFormProps) {
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="text"
-          placeholder="您的姓名"
+          placeholder="您的称呼"
           value={form.name}
           onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
           className="w-full bg-[rgba(15,23,42,0.6)] border border-[rgba(59,130,246,0.2)] rounded-lg px-4 py-3 text-white placeholder-[#64748b] outline-none focus:border-[#3b82f6] transition-colors duration-200"

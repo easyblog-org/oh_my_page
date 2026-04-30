@@ -67,7 +67,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const tolerance = 5;
+    const tolerance = 10;
     const diff = Math.abs(x - stored.x);
 
     if (diff > tolerance) {
