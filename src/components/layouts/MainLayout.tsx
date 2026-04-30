@@ -253,7 +253,7 @@ export function MainLayout() {
             </div>
           </div>
           <p className="text-xs text-[#64748b] text-center">
-            © 2026 {creatorInfo.name} ({creatorInfo.nickname}). Built with React + TypeScript + Vite
+            © 2026 xinxinnote.tech (Frank/dev). Built with React + TypeScript + Vite
           </p>
         </div>
       </footer>

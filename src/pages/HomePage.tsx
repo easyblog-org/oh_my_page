@@ -5,8 +5,7 @@ import { heroTexts, codeKeywords, featuredProjects } from "@/data/home";
 import { HeroAnimationSlot, getHeroAnimation } from "@/components/hero-animation";
 import { TypingText } from "@/components/TypingText";
 import { ProjectCard } from "@/components/ProjectCard";
-import { mailServiceFactory } from "@/services/mailService";
-import { toast } from "sonner";
+import ContactForm from "@/components/ContactForm";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -36,8 +35,6 @@ export default function HomePage() {
   const [aboutVisible, setAboutVisible] = useState(false);
   const [contactVisible, setContactVisible] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
-  const [contactForm, setContactForm] = useState({ name: "", email: "", message: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const projectsRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
@@ -422,85 +419,7 @@ export default function HomePage() {
 
             {/* Right: Contact Form */}
             <div className="md:w-[45%]">
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  if (!contactForm.name || !contactForm.email || !contactForm.message) {
-                    toast.error("请填写完整信息");
-                    return;
-                  }
-
-                  setIsSubmitting(true);
-                  const mailService = mailServiceFactory();
-
-                  try {
-                    const response = await mailService.sendEmail({
-                      to: creatorInfo.contact.email,
-                      from: contactForm.email,
-                      fromName: contactForm.name,
-                      subject: `新的合作咨询：${contactForm.name}`,
-                      html: `<p><strong>姓名：</strong>${contactForm.name}</p>
-                             <p><strong>邮箱：</strong>${contactForm.email}</p>
-                             <p><strong>留言内容：</strong></p>
-                             <p>${contactForm.message.replace(/\n/g, "<br/>")}</p>`,
-                    });
-
-                    if (response.success) {
-                      toast.success("发送成功！我会尽快回复您。");
-                      setContactForm({ name: "", email: "", message: "" });
-                    } else {
-                      toast.error(response.message);
-                    }
-                  } catch (error) {
-                    toast.error("发送失败，请稍后重试");
-                  } finally {
-                    setIsSubmitting(false);
-                  }
-                }}
-                className="flex flex-col gap-5"
-              >
-                <div>
-                  <input
-                    type="text"
-                    placeholder="您的称呼"
-                    value={contactForm.name}
-                    onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                    className="w-full bg-[#1e293b] border border-[#334155] rounded-lg px-4 py-3 text-white placeholder-[#64748b] focus:border-[#3b82f6] focus:outline-none transition-colors duration-200"
-                  />
-                </div>
-
-                <div>
-                  <input
-                    type="email"
-                    required
-                    placeholder="your@email.com"
-                    value={contactForm.email}
-                    onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                    className="w-full bg-[#1e293b] border border-[#334155] rounded-lg px-4 py-3 text-white placeholder-[#64748b] focus:border-[#3b82f6] focus:outline-none transition-colors duration-200"
-                  />
-                </div>
-
-                <div>
-                  <textarea
-                    required
-                    rows={4}
-                    placeholder="请详细描述您的需求..."
-                    value={contactForm.message}
-                    onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                    className="w-full bg-[#1e293b] border border-[#334155] rounded-lg px-4 py-3 text-white placeholder-[#64748b] focus:border-[#3b82f6] focus:outline-none transition-colors duration-200 resize-none"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-[#3b82f6] text-white px-6 py-3 rounded-lg hover:bg-[#2563eb] transition-colors duration-200 border-none cursor-pointer text-base disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? "发送中..." : "发送消息"}
-                </button>
-
-                <p className="text-xs text-[#64748b]">我会在 24 小时内回复。</p>
-              </form>
+              <ContactForm toEmail={creatorInfo.contact.email} />
             </div>
           </div>
         </div>

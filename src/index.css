@@ -125,3 +125,150 @@
     scroll-behavior: smooth;
   }
 }
+
+.captcha-wrapper .rc-slider-captcha {
+  --rcsc-primary: #3b82f6;
+  --rcsc-primary-light: rgba(59, 130, 246, 0.2);
+  --rcsc-error: #ef4444;
+  --rcsc-error-light: rgba(239, 68, 68, 0.15);
+  --rcsc-success: #22c55e;
+  --rcsc-success-light: rgba(34, 197, 94, 0.15);
+  --rcsc-border-color: rgba(59, 130, 246, 0.3);
+  --rcsc-bg-color: #1e293b;
+  --rcsc-text-color: #94a3b8;
+  --rcsc-button-color: #3b82f6;
+  --rcsc-button-hover-color: #fff;
+  --rcsc-button-bg-color: #1e3a5f;
+  --rcsc-panel-border-radius: 8px;
+  --rcsc-control-border-radius: 8px;
+  --rcsc-control-height: 44px;
+}
+
+.captcha-wrapper .rc-slider-captcha-panel {
+  border-color: rgba(59, 130, 246, 0.2) !important;
+  border-radius: 8px !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-panel-inner {
+  border: 1px solid rgba(59, 130, 246, 0.15) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-jigsaw {
+  border-color: rgba(59, 130, 246, 0.2) !important;
+  border-radius: 8px !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-jigsaw-puzzle {
+  filter: drop-shadow(0 0 3px rgba(59, 130, 246, 0.6)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.captcha-wrapper .rc-slider-captcha-jigsaw-refresh {
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 6px !important;
+  margin: 6px !important;
+  padding: 0 !important;
+  font-size: 18px !important;
+  opacity: 0.9 !important;
+  transition: opacity 0.2s, background 0.2s !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-jigsaw-refresh:hover {
+  background: rgba(59, 130, 246, 0.5) !important;
+  opacity: 1 !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-control {
+  background: #0f172a !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  border-radius: 8px !important;
+  height: 44px !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-control-indicator {
+  border-radius: 8px !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-control-tips {
+  font-size: 13px !important;
+  letter-spacing: 0.5px !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-button {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  font-size: 20px !important;
+  background: linear-gradient(135deg, #1e3a5f 0%, #1a365d 100%) !important;
+  border: 2px solid rgba(59, 130, 246, 0.5) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3), 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-button-active,
+.captcha-wrapper .rc-slider-captcha-button:active {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  transform: scale(1.02);
+}
+
+.captcha-wrapper .rc-slider-captcha-button-pc:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-button-success {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%) !important;
+  border-color: #4ade80 !important;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.5) !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-button-error {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  border-color: #f87171 !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.5) !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-loading {
+  background-color: #1e293b !important;
+  border-radius: 8px !important;
+}
+
+.captcha-wrapper .rc-slider-captcha-load-failed {
+  background-color: #1e293b !important;
+  border-radius: 8px !important;
+}
+
+@media (max-width: 480px) {
+  .captcha-wrapper .rc-slider-captcha {
+    max-width: 100% !important;
+  }
+
+  .captcha-wrapper .rc-slider-captcha-panel {
+    max-width: 100% !important;
+  }
+
+  .captcha-wrapper .rc-slider-captcha-jigsaw {
+    max-width: 100% !important;
+  }
+
+  .captcha-wrapper .rc-slider-captcha-button {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+  }
+
+  .captcha-wrapper .rc-slider-captcha-control {
+    height: 48px !important;
+  }
+}
