@@ -1,4 +1,3 @@
-
 import * as vite from 'vite';
 import { defineConfig, loadConfigFromFile } from "vite";
 import type { Plugin, ConfigEnv } from "vite";
@@ -31,10 +30,16 @@ export default defineConfig({
     __VITE_INFO__: JSON.stringify(viteVersionInfo),
     ...(userConfig?.define || {})
   },
-  // 将 Vite 缓存目录设置为项目本地目录，避免在 /workspace/node_modules/ 下创建
   cacheDir: path.resolve(__dirname, "node_modules/.vite"),
   server: {
-    port: 8080
+    host: '0.0.0.0',
+    port: 8080,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     makeTagger(),
@@ -49,7 +54,6 @@ export default defineConfig({
       configureServer(server) {
         let hmrEnabled = true;
 
-        // 包装原来的 send 方法
         const _send = server.ws.send;
         server.ws.send = (payload) => {
           if (hmrEnabled) {
@@ -59,7 +63,6 @@ export default defineConfig({
           }
         };
 
-        // 提供接口切换 HMR
         server.middlewares.use('/innerapi/v1/sourcecode/__hmr_off', (req, res) => {
           hmrEnabled = false;
           let body = {
@@ -80,12 +83,11 @@ export default defineConfig({
           res.end(JSON.stringify(body));
         });
 
-        // 注册一个 HTTP API，用来手动触发一次整体刷新
         server.middlewares.use('/innerapi/v1/sourcecode/__hmr_reload', (req, res) => {
           if (hmrEnabled) {
             server.ws.send({
               type: 'full-reload',
-              path: '*', // 整页刷新
+              path: '*',
             });
           }
           res.statusCode = 200;

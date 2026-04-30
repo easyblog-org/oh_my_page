@@ -7,8 +7,11 @@ export interface Project {
   coverImages?: string[];
   category: string;
   createdAt: string;
-  labels?: string[];
+  tags?: string[];
+  tech?: string;
   url?: string;
+  githubUrl?: string;
+  demoUrl?: string;
 }
 
 export interface Skill {
@@ -22,11 +25,17 @@ export interface Hobby {
   image: string;
 }
 
+export interface NavItem {
+  name: string;
+  anchor: string;
+}
+
 export interface CreatorInfo {
   name: string;
   nickname: string;
   avatar: string;
   bio: string;
+  heroBio: string;
   detailedBio: string;
   skills: string[];
   hobbies?: Hobby[];

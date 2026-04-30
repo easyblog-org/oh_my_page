@@ -41,7 +41,7 @@ export default function AboutPage() {
   const achievementsAnimation = useScrollAnimation(0.1);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 md:px-12 pt-0 pb-20  md:pt-0  md:pb-20 max-w-6xl">
+    <div className="container mx-auto px-4 sm:px-6 md:px-12 pt-[72px] pb-20 md:pb-20 max-w-6xl">
       {/* 页面标题 - 桌面端显示 */}
       <div
         ref={titleAnimation.ref}
@@ -49,7 +49,7 @@ export default function AboutPage() {
           }`}
       >
         <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tighter text-center">关于我</h1>
-        <Separator className="mt-4 md:mt-6" />
+        {/* <Separator className="mt-4 md:mt-6" /> */}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16">
@@ -127,7 +127,7 @@ export default function AboutPage() {
           >
             <h2 className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-3 md:mb-4">关于我 / ABOUT</h2>
             <p className="text-sm sm:text-base md:text-lg leading-relaxed text-foreground/90">
-              拥有5年深厚的Java开发背景，精通Spring Cloud微服务架构、并发编程及数据库优化。在繁忙的代码世界之外，我热衷于探索AI的无限可能，享受技术带来的创造力。我追求代码的整洁与生活的质感，相信平衡的艺术能激发无限的想象力。
+              {creatorInfo.detailedBio}
             </p>
           </div>
 
@@ -201,10 +201,14 @@ export default function AboutPage() {
                 <div className="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">10+</div>
                 <div className="text-xs text-muted-foreground">项目交付</div>
               </div>
-              <div className="p-4 sm:p-6 text-center bg-muted/20 border border-border rounded-lg">
-                <div className="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">100K+</div>
-                <div className="text-xs text-muted-foreground">日均线索处理</div>
-              </div>
+              {/* <div className="p-4 sm:p-6 text-center bg-muted/20 border border-border rounded-lg">
+                <a  href="https://blog.xinxinnote.tech" 
+                    target="_blank"
+                    rel="noopener noreferrer">
+                  <div className="text-xl sm:text-2xl font-bold text-primary mb-1 sm:mb-2">100+</div>
+                  <div className="text-xs text-muted-foreground">原创技术文章</div>
+                </a>
+              </div> */}
             </div>
           </div>
         </div>
