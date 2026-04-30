@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import IntersectObserver from '@/components/common/IntersectObserver';
 import { Toaster } from '@/components/ui/sonner';
 import { MainLayout } from './components/layouts/MainLayout';
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         </Route>
       </Routes>
       <Toaster position="top-center" />
+      <Analytics />
     </Router>
   );
 };
