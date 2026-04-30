@@ -30,6 +30,7 @@ export interface CaptchaImageResponse {
     captchaId: string;
     bgUrl: string;
     puzzleUrl: string;
+    captchaToken?: string;
   };
   message?: string;
 }
@@ -118,7 +119,7 @@ export async function fetchCaptchaImage(): Promise<CaptchaImageResponse> {
 
 export async function verifyCaptcha(
   captchaId: string,
-  data: { x: number; y: number; duration: number; trail: [number, number][] }
+  data: { x: number; y: number; duration: number; trail: [number, number][]; captchaToken?: string }
 ): Promise<CaptchaVerifyResponse> {
   try {
     const response = await fetch('/api/captcha/verify', {

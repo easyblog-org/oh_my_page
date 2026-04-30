@@ -12,12 +12,14 @@ interface CaptchaModalProps {
 export default function CaptchaModal({ visible, onClose, onVerified, verifying }: CaptchaModalProps) {
   const actionRef = useRef<ActionType | undefined>(undefined);
   const captchaIdRef = useRef<string>('');
+  const captchaTokenRef = useRef<string>('');
   const abortControllerRef = useRef<AbortController | null>(null);
 
   const handleRequest = useCallback(async () => {
     const result = await fetchCaptchaImage();
     if (result.success && result.data) {
       captchaIdRef.current = result.data.captchaId;
+      captchaTokenRef.current = result.data.captchaToken || '';
       return {
         bgUrl: result.data.bgUrl,
         puzzleUrl: result.data.puzzleUrl,
@@ -40,6 +42,7 @@ export default function CaptchaModal({ visible, onClose, onVerified, verifying }
         y: data.y,
         duration: data.duration,
         trail: data.trail,
+        captchaToken: captchaTokenRef.current,
       });
 
       if (result.success && result.token) {
