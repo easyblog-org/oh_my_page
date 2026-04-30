@@ -4,8 +4,8 @@ import { creatorInfo } from "@/data/my_info";
 import { heroTexts, codeKeywords, featuredProjects } from "@/data/home";
 import { HeroAnimationSlot, getHeroAnimation } from "@/components/hero-animation";
 import { TypingText } from "@/components/TypingText";
-import { ProjectCard } from "@/components/ProjectCard";
 import ContactForm from "@/components/ContactForm";
+import FeaturedProjects from "@/components/FeaturedProjects";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -240,16 +240,7 @@ export default function HomePage() {
             <div className="w-[60px] h-[2px] bg-[#3b82f6] mx-auto" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-                visible={projectsVisible}
-              />
-            ))}
-          </div>
+          <FeaturedProjects projects={featuredProjects} visible={projectsVisible} />
 
           <div className="flex justify-end mt-8">
             <Link
