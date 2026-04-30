@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite --config vite.config.dev.ts",
     "build": "vite build",
+    "start": "node server.js",
     "lint": "tsgo -p tsconfig.check.json; npx biome lint; .rules/check.sh;npx tailwindcss -i ./src/index.css -o /dev/null 2>&1 | grep -E '^(CssSyntaxError|Error):.*' || true;.rules/testBuild.sh",
     "server": "node server.js",
     "dev:server": "nodemon server.js",

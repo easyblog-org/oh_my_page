@@ -23,6 +23,8 @@ app.use(cors({
 app.use(express.json());
 
 const SEND_CLOUD_API_URL = 'https://api.sendcloud.net/apiv2/mail/send';
+
+app.use(express.static(path.join(__dirname, 'dist')));
 const API_USER = process.env.API_USER;
 const API_KEY = process.env.API_KEY;
 
@@ -353,7 +355,18 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Captcha mode: ${puzzleAvailable ? 'node-puzzle (full)' : 'fallback (SVG)'}`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use. Please kill the process on port ${PORT} first:\n  lsof -ti:${PORT} | xargs kill -9`);
+    process.exit(1);
+  } else {
+    throw err;
+  }
 });
