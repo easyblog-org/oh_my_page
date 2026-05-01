@@ -22,19 +22,29 @@ function verifySignedToken(token, maxAge) {
   try {
     const decoded = Buffer.from(token, 'base64').toString();
     const colonIndex = decoded.indexOf(':');
-    if (colonIndex === -1) return null;
+    if (colonIndex === -1) {
+      console.log('[captcha/image] verifySignedToken: no colon found in decoded token');
+      return null;
+    }
 
     const signature = decoded.slice(0, colonIndex);
     const data = decoded.slice(colonIndex + 1);
 
     const expectedSignature = signData(data);
-    if (signature !== expectedSignature) return null;
+    if (signature !== expectedSignature) {
+      console.log('[captcha/image] verifySignedToken: signature mismatch');
+      return null;
+    }
 
     const payload = JSON.parse(data);
-    if (Date.now() - payload.createdAt > maxAge) return null;
+    if (Date.now() - payload.createdAt > maxAge) {
+      console.log('[captcha/image] verifySignedToken: token expired');
+      return null;
+    }
 
     return payload;
-  } catch {
+  } catch (e) {
+    console.log('[captcha/image] verifySignedToken error:', e.message);
     return null;
   }
 }
@@ -63,6 +73,8 @@ function generateFallbackPuzzle() {
 }
 
 export default async function handler(req, res) {
+  console.log('[captcha/image] request method:', req.method);
+
   if (req.method !== 'GET') {
     return res.status(405).json({ success: false, message: 'Method not allowed' });
   }
@@ -70,22 +82,31 @@ export default async function handler(req, res) {
   try {
     const captchaId = crypto.randomUUID();
     let bgBase64, puzzleBase64, targetX;
+    let usedPuzzleMode = false;
 
     let createPuzzle = null;
     try {
       const nodePuzzle = await import('node-puzzle');
       createPuzzle = nodePuzzle.default || nodePuzzle;
-    } catch { }
+      console.log('[captcha/image] node-puzzle loaded successfully');
+    } catch (e) {
+      console.log('[captcha/image] node-puzzle import failed:', e.message);
+    }
 
     const captchaDir = path.join(process.cwd(), 'public', 'captcha');
+    console.log('[captcha/image] looking for images in:', captchaDir);
     let imagePaths = [];
     try {
       const files = fs.readdirSync(captchaDir).filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f));
       imagePaths = files.map(f => path.join(captchaDir, f));
-    } catch { }
+      console.log('[captcha/image] found images:', files);
+    } catch (e) {
+      console.log('[captcha/image] read captcha dir failed:', e.message);
+    }
 
     if (createPuzzle && imagePaths.length > 0) {
       const randomImage = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+      console.log('[captcha/image] using image:', randomImage);
       const imageBuffer = fs.readFileSync(randomImage);
 
       const result = await createPuzzle(imageBuffer, {
@@ -101,18 +122,29 @@ export default async function handler(req, res) {
       bgBase64 = `data:image/jpeg;base64,${result.bg.toString('base64')}`;
       puzzleBase64 = `data:image/png;base64,${result.puzzle.toString('base64')}`;
       targetX = result.x;
+      usedPuzzleMode = true;
+      console.log('[captcha/image] node-puzzle mode, targetX:', targetX);
     } else {
       targetX = Math.floor(Math.random() * (CAPTCHA_BG_WIDTH - 80)) + 40;
       const bgSvg = generateFallbackBg(targetX);
       const puzzleSvg = generateFallbackPuzzle();
       bgBase64 = `data:image/svg+xml;base64,${Buffer.from(bgSvg).toString('base64')}`;
       puzzleBase64 = `data:image/svg+xml;base64,${Buffer.from(puzzleSvg).toString('base64')}`;
+      console.log('[captcha/image] fallback SVG mode, targetX:', targetX);
     }
 
     const captchaToken = createSignedToken({
       captchaId,
       x: targetX,
       createdAt: Date.now(),
+    });
+
+    console.log('[captcha/image] generated captcha:', {
+      captchaId,
+      targetX,
+      usedPuzzleMode,
+      tokenLength: captchaToken.length,
+      TOKEN_SECRET_prefix: TOKEN_SECRET.slice(0, 8) + '...',
     });
 
     return res.status(200).json({
@@ -125,10 +157,11 @@ export default async function handler(req, res) {
       },
     });
   } catch (error) {
-    console.error('Captcha image generation error:', error);
+    console.error('[captcha/image] generation error:', error);
     return res.status(500).json({
       success: false,
       message: '验证码生成失败',
+      debug: error instanceof Error ? error.message : String(error),
     });
   }
 }

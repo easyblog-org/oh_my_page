@@ -20,6 +20,14 @@ export default function CaptchaModal({ visible, onClose, onVerified, verifying }
 
   const handleRequest = useCallback(async () => {
     const result = await fetchCaptchaImage();
+    console.log('[CaptchaModal] fetchCaptchaImage result:', {
+      success: result.success,
+      hasData: !!result.data,
+      captchaId: result.data?.captchaId,
+      hasCaptchaToken: !!result.data?.captchaToken,
+      captchaTokenLength: result.data?.captchaToken?.length,
+      message: result.message,
+    });
     if (result.success && result.data) {
       captchaIdRef.current = result.data.captchaId;
       captchaTokenRef.current = result.data.captchaToken || '';
@@ -44,12 +52,28 @@ export default function CaptchaModal({ visible, onClose, onVerified, verifying }
       const renderedWidth = panelEl?.clientWidth || CAPTCHA_BG_WIDTH;
       const scaledX = (data.x / renderedWidth) * CAPTCHA_BG_WIDTH;
 
+      console.log('[CaptchaModal] handleVerify:', {
+        rawX: data.x,
+        renderedWidth,
+        scaledX,
+        captchaId: captchaIdRef.current,
+        hasCaptchaToken: !!captchaTokenRef.current,
+        captchaTokenLength: captchaTokenRef.current.length,
+        duration: data.duration,
+      });
+
       const result = await verifyCaptcha(captchaIdRef.current, {
         x: scaledX,
         y: data.y,
         duration: data.duration,
         trail: data.trail,
         captchaToken: captchaTokenRef.current,
+      });
+
+      console.log('[CaptchaModal] verifyCaptcha result:', {
+        success: result.success,
+        hasToken: !!result.token,
+        message: result.message,
       });
 
       if (result.success && result.token) {
