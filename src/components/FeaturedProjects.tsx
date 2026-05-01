@@ -46,7 +46,7 @@ export default function FeaturedProjects({ projects, visible = true }: FeaturedP
 
     return (
       <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {firstRow.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} visible={visible} />
           ))}
@@ -68,7 +68,7 @@ export default function FeaturedProjects({ projects, visible = true }: FeaturedP
   const gridClass = getDesktopGridClass(count);
 
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 ${gridClass} gap-6`}>
+    <div className={`grid grid-cols-1 md:grid-cols-2 ${gridClass} gap-6 items-stretch`}>
       {projects.map((project, index) => (
         <ProjectCard key={project.id} project={project} index={index} visible={visible} />
       ))}

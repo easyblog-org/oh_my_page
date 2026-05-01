@@ -18,7 +18,7 @@ export function ProjectCard({ project, index = 0, visible = true }: ProjectCardP
       }`}
       style={{ transitionDelay: `${(index + 1) * 0.1}s` }}
     >
-      <div className="bg-[rgba(15,23,42,0.6)] backdrop-blur-[4px] border border-[rgba(59,130,246,0.2)] rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:border-[#3b82f6] hover:shadow-[0_20px_25px_-12px_rgba(0,0,0,0.5)]">
+      <div className="bg-[rgba(15,23,42,0.6)] backdrop-blur-[4px] border border-[rgba(59,130,246,0.2)] rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:border-[#3b82f6] hover:shadow-[0_20px_25px_-12px_rgba(0,0,0,0.5)] h-full flex flex-col">
         <div className="aspect-video overflow-hidden relative">
           {project.coverImage ? (
             <img
@@ -37,16 +37,16 @@ export function ProjectCard({ project, index = 0, visible = true }: ProjectCardP
           </span>
         </div>
 
-        <div className="p-6">
+        <div className="p-6 flex flex-col flex-1">
           <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#3b82f6] transition-colors duration-200">
             {project.title}
           </h3>
 
-          <p className="text-sm text-[#cbd5e1] leading-[1.5] mb-4 line-clamp-2">
+          <p className="text-sm text-[#cbd5e1] leading-[1.5] mb-4 line-clamp-2 flex-shrink-0">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-4 flex-shrink-0">
             {(project.tags ?? []).map((tag) => (
               <span
                 key={tag}
@@ -57,7 +57,7 @@ export function ProjectCard({ project, index = 0, visible = true }: ProjectCardP
             ))}
           </div>
 
-          <span className="text-sm text-[#3b82f6] group-hover:underline">
+          <span className="text-sm text-[#3b82f6] group-hover:underline mt-auto">
             查看详情 →
           </span>
         </div>

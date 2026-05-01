@@ -175,7 +175,7 @@ app.post('/api/captcha/verify', async (req, res) => {
       });
     }
 
-    const tolerance = 5;
+    const tolerance = 10;
     const diff = Math.abs(x - stored.x);
 
     captchaStore.delete(captchaId);

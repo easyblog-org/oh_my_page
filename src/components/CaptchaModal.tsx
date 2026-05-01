@@ -9,15 +9,28 @@ interface CaptchaModalProps {
   verifying: boolean;
 }
 
+const CAPTCHA_BG_WIDTH = 320;
+
 export default function CaptchaModal({ visible, onClose, onVerified, verifying }: CaptchaModalProps) {
   const actionRef = useRef<ActionType | undefined>(undefined);
   const captchaIdRef = useRef<string>('');
+  const captchaTokenRef = useRef<string>('');
   const abortControllerRef = useRef<AbortController | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleRequest = useCallback(async () => {
     const result = await fetchCaptchaImage();
+    console.log('[CaptchaModal] fetchCaptchaImage result:', {
+      success: result.success,
+      hasData: !!result.data,
+      captchaId: result.data?.captchaId,
+      hasCaptchaToken: !!result.data?.captchaToken,
+      captchaTokenLength: result.data?.captchaToken?.length,
+      message: result.message,
+    });
     if (result.success && result.data) {
       captchaIdRef.current = result.data.captchaId;
+      captchaTokenRef.current = result.data.captchaToken || '';
       return {
         bgUrl: result.data.bgUrl,
         puzzleUrl: result.data.puzzleUrl,
@@ -35,11 +48,32 @@ export default function CaptchaModal({ visible, onClose, onVerified, verifying }
       abortControllerRef.current?.abort();
       abortControllerRef.current = new AbortController();
 
+      const panelEl = wrapperRef.current?.querySelector('.rc-slider-captcha-panel');
+      const renderedWidth = panelEl?.clientWidth || CAPTCHA_BG_WIDTH;
+      const scaledX = (data.x / renderedWidth) * CAPTCHA_BG_WIDTH;
+
+      console.log('[CaptchaModal] handleVerify:', {
+        rawX: data.x,
+        renderedWidth,
+        scaledX,
+        captchaId: captchaIdRef.current,
+        hasCaptchaToken: !!captchaTokenRef.current,
+        captchaTokenLength: captchaTokenRef.current.length,
+        duration: data.duration,
+      });
+
       const result = await verifyCaptcha(captchaIdRef.current, {
-        x: data.x,
+        x: scaledX,
         y: data.y,
         duration: data.duration,
         trail: data.trail,
+        captchaToken: captchaTokenRef.current,
+      });
+
+      console.log('[CaptchaModal] verifyCaptcha result:', {
+        success: result.success,
+        hasToken: !!result.token,
+        message: result.message,
       });
 
       if (result.success && result.token) {
@@ -102,7 +136,7 @@ export default function CaptchaModal({ visible, onClose, onVerified, verifying }
           </button>
         </div>
 
-        <div className="captcha-wrapper">
+        <div className="captcha-wrapper" ref={wrapperRef}>
           <SliderCaptcha
             request={handleRequest}
             onVerify={handleVerify}
