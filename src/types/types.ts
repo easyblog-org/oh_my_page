@@ -27,7 +27,9 @@ export interface Hobby {
 
 export interface NavItem {
   name: string;
-  anchor: string;
+  anchor?: string;
+  href?: string;
+  external?: boolean;
 }
 
 export interface CreatorInfo {
