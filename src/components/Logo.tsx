@@ -1,3 +1,5 @@
+import logoSrc from "/images/logo/my-logo.png";
+
 interface LogoProps {
   className?: string;
 }
@@ -8,6 +10,11 @@ export function Logo({ className }: LogoProps) {
       href="/"
       className={`flex items-center p-0 gap-2 ${className ?? ""}`}
     >
+      <img
+        src={logoSrc}
+        alt="Frank's Logo"
+        className="w-8 h-8 object-contain"
+      />
       <span className="font-mono text-xl font-semibold text-white tracking-wide transition-all duration-200 hover:text-[#93c5fd]">
         Frank
       </span>
