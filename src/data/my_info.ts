@@ -26,7 +26,7 @@ export const creatorInfo: CreatorInfo = {
   ],
   contact: {
     email: "huangxin981230@163.com",
-    phone: "+86 18805691256",
+    phone: "+86 15709160159",
     wechat: "hx95152437",
     socialLinks: [
       { platform: "GitHub", url: "https://github.com/LoverITer", label: "访问我的GitHub仓库" },
